@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>HTTP协议以及HTTP请求中8种请求方法 | SAY&#39;s BLOG | 成功非偶然!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="什么是协议？协议，是指通信的双方，在通信流程或内容格式上，共同遵守的标准。 什么是http协议？http协议，是互联网中最常见的网络通信标准。 http协议的特点 通信流程：断开式（无状态)断开式：http协议每次响应完成后，会断开与客户端的连接无状态：由于服务器断开了之前的连接，就无法知晓连接间的关系  内容格式：消息头和消息体   HTTP请求的方法：HTTP/1.1协议中共定义了八种方法（有">
+<meta name="keywords" content="前端 js react 跨域 css 打包 构建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP协议以及HTTP请求中8种请求方法">
+<meta property="og:url" content="shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/index.html">
+<meta property="og:site_name" content="SAY&#39;s BLOG">
+<meta property="og:description" content="什么是协议？协议，是指通信的双方，在通信流程或内容格式上，共同遵守的标准。 什么是http协议？http协议，是互联网中最常见的网络通信标准。 http协议的特点 通信流程：断开式（无状态)断开式：http协议每次响应完成后，会断开与客户端的连接无状态：由于服务器断开了之前的连接，就无法知晓连接间的关系  内容格式：消息头和消息体   HTTP请求的方法：HTTP/1.1协议中共定义了八种方法（有">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-09T01:57:51.658Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP协议以及HTTP请求中8种请求方法">
+<meta name="twitter:description" content="什么是协议？协议，是指通信的双方，在通信流程或内容格式上，共同遵守的标准。 什么是http协议？http协议，是互联网中最常见的网络通信标准。 http协议的特点 通信流程：断开式（无状态)断开式：http协议每次响应完成后，会断开与客户端的连接无状态：由于服务器断开了之前的连接，就无法知晓连接间的关系  内容格式：消息头和消息体   HTTP请求的方法：HTTP/1.1协议中共定义了八种方法（有">
+    
+    <link rel="shortcut icon" href="/shianyuan.github.io/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/shianyuan.github.io/img/brand.jpg)">
+      <div class="brand">
+        <a href="/shianyuan.github.io/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/shianyuan.github.io/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">shianyuan</h5>
+          <a href="mailto:154490146@qq.com" title="154490146@qq.com" class="mail">154490146@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/shianyuan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/introduction"  >
+                <i class="icon icon-lg icon-link"></i>
+                Introduction
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">HTTP协议以及HTTP请求中8种请求方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">HTTP协议以及HTTP请求中8种请求方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-09T01:48:46.000Z" itemprop="datePublished" class="page-time">
+  2018-08-09
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#什么是协议？"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是协议？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#什么是http协议？"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么是http协议？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#http协议的特点"><span class="post-toc-number">3.</span> <span class="post-toc-text">http协议的特点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTP请求的方法："><span class="post-toc-number">4.</span> <span class="post-toc-text">HTTP请求的方法：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-HTTP协议以及HTTP请求中8种请求方法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">HTTP协议以及HTTP请求中8种请求方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-09 09:48:46" datetime="2018-08-09T01:48:46.000Z"  itemprop="datePublished">2018-08-09</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="什么是协议？"><a href="#什么是协议？" class="headerlink" title="什么是协议？"></a>什么是协议？</h4><p>协议，是指通信的双方，在通信流程或内容格式上，共同遵守的标准。</p>
+<h4 id="什么是http协议？"><a href="#什么是http协议？" class="headerlink" title="什么是http协议？"></a>什么是http协议？</h4><p>http协议，是互联网中最常见的网络通信标准。</p>
+<h4 id="http协议的特点"><a href="#http协议的特点" class="headerlink" title="http协议的特点"></a>http协议的特点</h4><ol>
+<li><p>通信流程：断开式（无状态)<br>断开式：http协议每次响应完成后，会断开与客户端的连接<br>无状态：由于服务器断开了之前的连接，就无法知晓连接间的关系</p>
+</li>
+<li><p>内容格式：消息头和消息体</p>
+</li>
+</ol>
+<h4 id="HTTP请求的方法："><a href="#HTTP请求的方法：" class="headerlink" title="HTTP请求的方法："></a>HTTP请求的方法：</h4><p>HTTP/1.1协议中共定义了八种方法（有时也叫“动作”），来表明Request-URL指定的资源不同的操作方式</p>
+<p>1、 OPTIONS<br>返回服务器针对特定资源所支持的HTTP请求方法，也可以利用向web服务器发送‘*’的请求来测试服务器的功能性。<br>2、HEAD<br>向服务器索与GET请求相一致的响应，只不过响应体将不会被返回。这一方法可以再不必传输整个响应内容的情况下，就可以获取包含在响应小消息头中的元信息。<br>3、GET<br>向特定的资源发出请求。它本质就是发送一个请求来取得服务器上的某一资源。资源通过一组HTTP头和呈现数据（如HTML文本，或者图片或者视频等）返回给客户端。GET请求中，永远不会包含呈现数据。<br>4、POST<br>向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。 Loadrunner中对应POST请求函数：web_submit_data,web_submit_form<br>5、PUT<br>向指定资源位置上传其最新内容<br>6、DELETE<br>请求服务器删除Request-URL所标识的资源<br>7、TRACE<br>回显服务器收到的请求，主要用于测试或诊断<br>8、CONNECT<br>HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。<br>注意：<br>1）方法名称是区分大小写的，当某个请求所针对的资源不支持对应的请求方法的时候，服务器应当返回状态码405（Mothod Not Allowed）；当服务器不认识或者不支持对应的请求方法时，应返回状态码501（Not Implemented）。<br>2）HTTP服务器至少应该实现GET和HEAD/POST方法，其他方法都是可选的，此外除上述方法，特定的HTTP服务器支持扩展自定义的方法。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-08-09T01:57:51.658Z" itemprop="dateUpdated">2018-08-09 09:57:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/" target="_blank" rel="external">shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="shianyuan.github.io">
+            <img src="/shianyuan.github.io/img/avatar.jpg" alt="shianyuan">
+            shianyuan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/&title=《HTTP协议以及HTTP请求中8种请求方法》 — SAY's BLOG&pic=shianyuan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/&title=《HTTP协议以及HTTP请求中8种请求方法》 — SAY's BLOG&source=个人的学习博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP协议以及HTTP请求中8种请求方法》 — SAY's BLOG&url=shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/&via=shianyuan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/shianyuan.github.io/2018/08/10/Chrome浏览器Network面板http请求时间分析/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Chrome浏览器Network面板http请求时间分析</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">web前端优化加快网页加载速度方法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/shianyuan.github.io/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/shianyuan.github.io/img/wechat.jpg" data-alipay="/shianyuan.github.io/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>shianyuan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/&title=《HTTP协议以及HTTP请求中8种请求方法》 — SAY's BLOG&pic=shianyuan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/&title=《HTTP协议以及HTTP请求中8种请求方法》 — SAY's BLOG&source=个人的学习博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP协议以及HTTP请求中8种请求方法》 — SAY's BLOG&url=shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/&via=shianyuan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/shianyuan.github.io/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你准备去哪！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
