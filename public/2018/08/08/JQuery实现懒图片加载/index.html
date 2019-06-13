@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>JQuery实现懒图片加载 | SAY&#39;s BLOG | 成功非偶然!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JQuery">
+    <meta name="description" content="在网页中，常常需要用到图片，而图片需要消耗较大的流量。正常情况下，浏览器会解析整个HTML代码，然后从上到下依次加载&amp;lt;img src=&amp;quot;xxx&amp;quot;&amp;gt;的图片标签。如果页面很长，隐藏在页面下方的图片其实已经被浏览器加载了。如果用户不向下滚动页面，就没有看到这些图片，相当于白白浪费了图片的流量。 所以，淘宝、京东这些流量非常巨大的电商，商品介绍页又必须有大量的图片，因此，这">
+<meta name="keywords" content="JQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JQuery实现懒图片加载">
+<meta property="og:url" content="shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/index.html">
+<meta property="og:site_name" content="SAY&#39;s BLOG">
+<meta property="og:description" content="在网页中，常常需要用到图片，而图片需要消耗较大的流量。正常情况下，浏览器会解析整个HTML代码，然后从上到下依次加载&amp;lt;img src=&amp;quot;xxx&amp;quot;&amp;gt;的图片标签。如果页面很长，隐藏在页面下方的图片其实已经被浏览器加载了。如果用户不向下滚动页面，就没有看到这些图片，相当于白白浪费了图片的流量。 所以，淘宝、京东这些流量非常巨大的电商，商品介绍页又必须有大量的图片，因此，这">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-08T06:48:48.944Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JQuery实现懒图片加载">
+<meta name="twitter:description" content="在网页中，常常需要用到图片，而图片需要消耗较大的流量。正常情况下，浏览器会解析整个HTML代码，然后从上到下依次加载&amp;lt;img src=&amp;quot;xxx&amp;quot;&amp;gt;的图片标签。如果页面很长，隐藏在页面下方的图片其实已经被浏览器加载了。如果用户不向下滚动页面，就没有看到这些图片，相当于白白浪费了图片的流量。 所以，淘宝、京东这些流量非常巨大的电商，商品介绍页又必须有大量的图片，因此，这">
+    
+    <link rel="shortcut icon" href="/shianyuan.github.io/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/shianyuan.github.io/img/brand.jpg)">
+      <div class="brand">
+        <a href="/shianyuan.github.io/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/shianyuan.github.io/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">shianyuan</h5>
+          <a href="mailto:154490146@qq.com" title="154490146@qq.com" class="mail">154490146@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/shianyuan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/introduction"  >
+                <i class="icon icon-lg icon-link"></i>
+                Introduction
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JQuery实现懒图片加载</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JQuery实现懒图片加载</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-08T05:43:03.000Z" itemprop="datePublished" class="page-time">
+  2018-08-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-JQuery实现懒图片加载"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JQuery实现懒图片加载</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-08 13:43:03" datetime="2018-08-08T05:43:03.000Z"  itemprop="datePublished">2018-08-08</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在网页中，常常需要用到图片，而图片需要消耗较大的流量。正常情况下，浏览器会解析整个HTML代码，然后从上到下依次加载<code>&lt;img src=&quot;xxx&quot;&gt;</code>的图片标签。如果页面很长，隐藏在页面下方的图片其实已经被浏览器加载了。如果用户不向下滚动页面，就没有看到这些图片，相当于白白浪费了图片的流量。</p>
+<p>所以，淘宝、京东这些流量非常巨大的电商，商品介绍页又必须有大量的图片，因此，这些页面的图片都是“按需加载”，即用户滚动页面时显示出来的时候才加载图片。当网速非常快的时候，用户并不能感知懒加载的动作，既省流量又不影响用户浏览。</p>
+<p>本文给出一种利用jQuery实现图片懒加载的原理。它的基本思想是：在输出HTML的时候，不要直接输出<code>&lt;img src=&quot;xxx&quot;</code>，而是输出如下的img标签：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">"/static/loading.gif"</span> data-src=<span class="string">"http://真正的图片地址/xxx.jpg"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>因此，页面显示的图片是一个gif加载动画。当页面滚动时，如果图片出现在屏幕中，就利用jQuery把<code>&lt;img&gt;</code>的src属性替换为data-src的内容，浏览器就会实时加载。<br>为了更好的体验，初始加载中给src一个默认的gif图片。<br>JavaScript代码如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">// 注意: 需要引入jQuery和underscore</span><br><span class="line">$(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    // 获取window的引用:</span><br><span class="line">    var <span class="variable">$window</span> = $(window);</span><br><span class="line">    // 获取包含data-src属性的img，并以jQuery对象存入数组:</span><br><span class="line">    var lazyImgs = _.map($(<span class="string">'img[data-src]'</span>).get(), <span class="keyword">function</span> (i) &#123;</span><br><span class="line">        <span class="built_in">return</span> $(i);</span><br><span class="line">    &#125;);</span><br><span class="line">    // 定义事件函数:</span><br><span class="line">    var onScroll = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        // 获取页面滚动的高度:</span><br><span class="line">        var wtop = <span class="variable">$window</span>.scrollTop();</span><br><span class="line">        // 判断是否还有未加载的img:</span><br><span class="line">        <span class="keyword">if</span> (lazyImgs.length &gt; 0) &#123;</span><br><span class="line">            // 获取可视区域高度:</span><br><span class="line">            var wheight = <span class="variable">$window</span>.height();</span><br><span class="line">            // 存放待删除的索引:</span><br><span class="line">            var loadedIndex = [];</span><br><span class="line">            // 循环处理数组的每个img元素:</span><br><span class="line">            _.each(lazyImgs, <span class="keyword">function</span> (<span class="variable">$i</span>, index) &#123;</span><br><span class="line">                // 判断是否在可视范围内:</span><br><span class="line">                <span class="keyword">if</span> (<span class="variable">$i</span>.offset().top - wtop &lt; wheight) &#123;</span><br><span class="line">                    // 设置src属性:</span><br><span class="line">                    <span class="variable">$i</span>.attr(<span class="string">'src'</span>, <span class="variable">$i</span>.attr(<span class="string">'data-src'</span>));</span><br><span class="line">                    // 添加到待删除数组:</span><br><span class="line">                    loadedIndex.unshift(index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            // 删除已处理的对象:</span><br><span class="line">            _.each(loadedIndex, <span class="keyword">function</span> (index) &#123;</span><br><span class="line">                lazyImgs.splice(index, 1);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    // 绑定事件:</span><br><span class="line">    <span class="variable">$window</span>.scroll(onScroll);</span><br><span class="line">    // 手动触发一次:</span><br><span class="line">    onScroll();</span><br></pre></td></tr></table></figure></p>
+<p><code>onScroll()</code>函数最后要手动触发一次，因为页面显示时，并未触发scroll事件。如果图片已经在可视区域内，这些图片仍然是loading状态，需要手动触发一次，就可以正常显示。<br>要测试图片懒加载效果，可以在Chrome浏览器的控制台选择“Network”，把“Online”改为“Slow 3G”就可以模拟慢速网络下浏览器懒加载图片的效果。<br>下面贴上完整测试的代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;ssss&lt;/title&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        ul,li&#123;</span><br><span class="line">            list-style:none;</span><br><span class="line">        &#125;</span><br><span class="line">        .container&#123;</span><br><span class="line">            width: 600px;</span><br><span class="line">            margin: 0 auto;</span><br><span class="line">        &#125;</span><br><span class="line">        .container li&#123;</span><br><span class="line">            <span class="built_in">float</span>: left;</span><br><span class="line">            margin: 10px 10px;</span><br><span class="line">        &#125;</span><br><span class="line">        .container li img&#123;</span><br><span class="line">            width: 240px;</span><br><span class="line">            height: 180px;</span><br><span class="line">        &#125;</span><br><span class="line">        p&#123;</span><br><span class="line">            <span class="built_in">float</span>: left;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;ul class=<span class="string">"container"</span>&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/5.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/6.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/7.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/8.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/9.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/10.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/11.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/12.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/13.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/14.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/15.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"#"</span>&gt;&lt;img src=<span class="string">""</span> data-src=<span class="string">"http://cdn.jirengu.com/book.jirengu.com/img/16.jpg"</span> /&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;script src=<span class="string">"http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/underscore.js/1.9.0/underscore-min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    // 注意: 需要引入jQuery和underscore</span><br><span class="line">$(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    // 获取window的引用:</span><br><span class="line">    var <span class="variable">$window</span> = $(window);</span><br><span class="line">    // 获取包含data-src属性的img，并以jQuery对象存入数组:</span><br><span class="line">    var lazyImgs = _.map($(<span class="string">'img[data-src]'</span>).get(), <span class="keyword">function</span> (i) &#123;</span><br><span class="line">        <span class="built_in">return</span> $(i);</span><br><span class="line">    &#125;);</span><br><span class="line">    // 定义事件函数:</span><br><span class="line">    var onScroll = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        // 获取页面滚动的高度:</span><br><span class="line">        var wtop = <span class="variable">$window</span>.scrollTop();</span><br><span class="line">        // 判断是否还有未加载的img:</span><br><span class="line">        <span class="keyword">if</span> (lazyImgs.length &gt; 0) &#123;</span><br><span class="line">            // 获取可视区域高度:</span><br><span class="line">            var wheight = <span class="variable">$window</span>.height();</span><br><span class="line">            // 存放待删除的索引:</span><br><span class="line">            var loadedIndex = [];</span><br><span class="line">            // 循环处理数组的每个img元素:</span><br><span class="line">            _.each(lazyImgs, <span class="keyword">function</span> (<span class="variable">$i</span>, index) &#123;</span><br><span class="line">                // 判断是否在可视范围内:</span><br><span class="line">                <span class="keyword">if</span> (<span class="variable">$i</span>.offset().top - wtop &lt; wheight) &#123;</span><br><span class="line">                    // 设置src属性:</span><br><span class="line">                    <span class="variable">$i</span>.attr(<span class="string">'src'</span>, <span class="variable">$i</span>.attr(<span class="string">'data-src'</span>));</span><br><span class="line">                    // 添加到待删除数组:</span><br><span class="line">                    loadedIndex.unshift(index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            // 删除已处理的对象:</span><br><span class="line">            _.each(loadedIndex, <span class="keyword">function</span> (index) &#123;</span><br><span class="line">                lazyImgs.splice(index, 1);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    // 绑定事件:</span><br><span class="line">    <span class="variable">$window</span>.scroll(onScroll);</span><br><span class="line">    // 手动触发一次:</span><br><span class="line">    onScroll();</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-08-08T06:48:48.944Z" itemprop="dateUpdated">2018-08-08 14:48:48</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/" target="_blank" rel="external">shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="shianyuan.github.io">
+            <img src="/shianyuan.github.io/img/avatar.jpg" alt="shianyuan">
+            shianyuan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/shianyuan.github.io/tags/JQuery/">JQuery</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/&title=《JQuery实现懒图片加载》 — SAY's BLOG&pic=shianyuan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/&title=《JQuery实现懒图片加载》 — SAY's BLOG&source=个人的学习博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JQuery实现懒图片加载》 — SAY's BLOG&url=shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/&via=shianyuan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">web前端优化加快网页加载速度方法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/shianyuan.github.io/2018/08/08/zepto的使用方法/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">zepto的使用方法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/shianyuan.github.io/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/shianyuan.github.io/img/wechat.jpg" data-alipay="/shianyuan.github.io/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>shianyuan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/&title=《JQuery实现懒图片加载》 — SAY's BLOG&pic=shianyuan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/&title=《JQuery实现懒图片加载》 — SAY's BLOG&source=个人的学习博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JQuery实现懒图片加载》 — SAY's BLOG&url=shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/&via=shianyuan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/shianyuan.github.io/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你准备去哪！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

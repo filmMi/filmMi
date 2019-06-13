@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>zepto的使用方法 | SAY&#39;s BLOG | 成功非偶然!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="前端工具">
+    <meta name="description" content="有些不了解zepto的同学在刚接触的时候肯定有很多疑惑，这个东西怎么用啊，去哪里下载啊，什么时候该用什么时候不该用啊，其实我以前也是这样的。jquery使用多了那么就让我们一起来了解下zepto把。 在移动端用不着pc端兼容难么多的浏览器，所以就有了zepto.js，如果此时用jquery的话就有些重了，现在pc端可以使用jquery，但是反过来的话pc端如果用zepto,js的话就不怎么兼容ie">
+<meta name="keywords" content="前端工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zepto的使用方法">
+<meta property="og:url" content="shianyuan.github.io/2018/08/08/zepto的使用方法/index.html">
+<meta property="og:site_name" content="SAY&#39;s BLOG">
+<meta property="og:description" content="有些不了解zepto的同学在刚接触的时候肯定有很多疑惑，这个东西怎么用啊，去哪里下载啊，什么时候该用什么时候不该用啊，其实我以前也是这样的。jquery使用多了那么就让我们一起来了解下zepto把。 在移动端用不着pc端兼容难么多的浏览器，所以就有了zepto.js，如果此时用jquery的话就有些重了，现在pc端可以使用jquery，但是反过来的话pc端如果用zepto,js的话就不怎么兼容ie">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/08/zepto的使用方法/a.png">
+<meta property="og:image" content="/08/zepto的使用方法/b.png">
+<meta property="og:updated_time" content="2018-08-08T02:26:19.147Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zepto的使用方法">
+<meta name="twitter:description" content="有些不了解zepto的同学在刚接触的时候肯定有很多疑惑，这个东西怎么用啊，去哪里下载啊，什么时候该用什么时候不该用啊，其实我以前也是这样的。jquery使用多了那么就让我们一起来了解下zepto把。 在移动端用不着pc端兼容难么多的浏览器，所以就有了zepto.js，如果此时用jquery的话就有些重了，现在pc端可以使用jquery，但是反过来的话pc端如果用zepto,js的话就不怎么兼容ie">
+<meta name="twitter:image" content="/08/zepto的使用方法/a.png">
+    
+    <link rel="shortcut icon" href="/shianyuan.github.io/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/shianyuan.github.io/img/brand.jpg)">
+      <div class="brand">
+        <a href="/shianyuan.github.io/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/shianyuan.github.io/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">shianyuan</h5>
+          <a href="mailto:154490146@qq.com" title="154490146@qq.com" class="mail">154490146@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/shianyuan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/introduction"  >
+                <i class="icon icon-lg icon-link"></i>
+                Introduction
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">zepto的使用方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">zepto的使用方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-08T02:08:40.000Z" itemprop="datePublished" class="page-time">
+  2018-08-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-zepto的使用方法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">zepto的使用方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-08 10:08:40" datetime="2018-08-08T02:08:40.000Z"  itemprop="datePublished">2018-08-08</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>有些不了解zepto的同学在刚接触的时候肯定有很多疑惑，这个东西怎么用啊，去哪里下载啊，什么时候该用什么时候不该用啊，其实我以前也是这样的。jquery使用多了那么就让我们一起来了解下zepto把。</p>
+<p>在移动端用不着pc端兼容难么多的浏览器，所以就有了zepto.js，如果此时用jquery的话就有些重了，现在pc端可以使用jquery，但是反过来的话pc端如果用zepto,js的话就不怎么兼容ie浏览器了。 </p>
+<p>这个库几乎和jquery 一样。使用上没什么区别，用法一样，可以理解为zepto.js仿照的jquery.<br>绑定事件和jquery一模一样，用下面这个改变背景色的小例子来说明一下↓<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/08/zepto的使用方法/a.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>此时的用法和jquery，只需要引入zepto文件即可。</p>
+<p>但是zepto也不完全和jquery一样，在zepto里面有些功能是默认没有的，比如说animate方法,此时如果想用的话需要在zepto里面增加一个fx模块。因为zepto是基于模块来管理的（将某些特定的功能独立出来形成一个单独的js文件，称为模块）。</p>
+<p>之所以采用模块的方式是因为为了提高性能，需要哪个模块的功能就添加哪个模块。</p>
+<p>zepto默认是有五个模块的，分别为zepto、event、ajax、form、ie，这五个模块被称为核心模块。</p>
+<p>下面这张图是zepto里面的所有模块。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/08/zepto的使用方法/b.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>那么如何在zepto里面增加和删除模块呢？</p>
+<p>1、首先要安装node.js环境；</p>
+<p>2、去zeptojs.com网站下载安装zepto.js,然后解压缩</p>
+<p>3、打开cmd命令窗口进入解压缩后的zepto目录（解压后的这个解压文件夹里面） 。</p>
+<p>4、执行npm install 命令</p>
+<p>5、然后编辑make文件，添加需要的自定义模块并保存</p>
+<p>6、然后执行命令 npm run-script dist</p>
+<p>7、此时会生成一个dist文件，查看目录dist即构建好的zepto.js</p>
+<p> 这时候直接引入你的zepto文件就可以用啦。</p>
+<p>在这里我只说了一下zepto的下载和使用，具体模块下的方法请到官方的说明文档查看。</p>
+<p>纯手打，如有错误请大家提出指正。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-08-08T02:26:19.147Z" itemprop="dateUpdated">2018-08-08 10:26:19</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/shianyuan.github.io/2018/08/08/zepto的使用方法/" target="_blank" rel="external">shianyuan.github.io/2018/08/08/zepto的使用方法/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="shianyuan.github.io">
+            <img src="/shianyuan.github.io/img/avatar.jpg" alt="shianyuan">
+            shianyuan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/shianyuan.github.io/tags/前端工具/">前端工具</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=shianyuan.github.io/2018/08/08/zepto的使用方法/&title=《zepto的使用方法》 — SAY's BLOG&pic=shianyuan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=shianyuan.github.io/2018/08/08/zepto的使用方法/&title=《zepto的使用方法》 — SAY's BLOG&source=个人的学习博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=shianyuan.github.io/2018/08/08/zepto的使用方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《zepto的使用方法》 — SAY's BLOG&url=shianyuan.github.io/2018/08/08/zepto的使用方法/&via=shianyuan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=shianyuan.github.io/2018/08/08/zepto的使用方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JQuery实现懒图片加载</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/shianyuan.github.io/2018/08/08/使用http-proxy-middleware解决前端开发中跨域的问题/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用http-proxy-middleware解决前端开发中跨域的问题</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/shianyuan.github.io/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/shianyuan.github.io/img/wechat.jpg" data-alipay="/shianyuan.github.io/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>shianyuan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=shianyuan.github.io/2018/08/08/zepto的使用方法/&title=《zepto的使用方法》 — SAY's BLOG&pic=shianyuan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=shianyuan.github.io/2018/08/08/zepto的使用方法/&title=《zepto的使用方法》 — SAY's BLOG&source=个人的学习博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=shianyuan.github.io/2018/08/08/zepto的使用方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《zepto的使用方法》 — SAY's BLOG&url=shianyuan.github.io/2018/08/08/zepto的使用方法/&via=shianyuan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=shianyuan.github.io/2018/08/08/zepto的使用方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=shianyuan.github.io/2018/08/08/zepto的使用方法/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/shianyuan.github.io/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你准备去哪！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

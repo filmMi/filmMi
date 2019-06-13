@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>web前端优化加快网页加载速度方法 | SAY&#39;s BLOG | 成功非偶然!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="速度优化 清理 HTML 文档 css推荐的做法：把 CSS 放在 HTML 的上面部分，文档头之内，这可以确保正常的渲染过程 js推荐的做法：将 JavaScript 放置在 head 标签内或 HTML 文档的上部，这会阻塞 HTML 和 CSS 元素的加载过程。推荐放在html后面 将CSS和JS放到外部文件中引用的话，CSS放头，JS放尾 。 最后一定要压缩一下 CSS, JS 和 HTM">
+<meta name="keywords" content="前端 js react 跨域 css 打包 构建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web前端优化加快网页加载速度方法">
+<meta property="og:url" content="shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/index.html">
+<meta property="og:site_name" content="SAY&#39;s BLOG">
+<meta property="og:description" content="速度优化 清理 HTML 文档 css推荐的做法：把 CSS 放在 HTML 的上面部分，文档头之内，这可以确保正常的渲染过程 js推荐的做法：将 JavaScript 放置在 head 标签内或 HTML 文档的上部，这会阻塞 HTML 和 CSS 元素的加载过程。推荐放在html后面 将CSS和JS放到外部文件中引用的话，CSS放头，JS放尾 。 最后一定要压缩一下 CSS, JS 和 HTM">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-08T07:15:35.352Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web前端优化加快网页加载速度方法">
+<meta name="twitter:description" content="速度优化 清理 HTML 文档 css推荐的做法：把 CSS 放在 HTML 的上面部分，文档头之内，这可以确保正常的渲染过程 js推荐的做法：将 JavaScript 放置在 head 标签内或 HTML 文档的上部，这会阻塞 HTML 和 CSS 元素的加载过程。推荐放在html后面 将CSS和JS放到外部文件中引用的话，CSS放头，JS放尾 。 最后一定要压缩一下 CSS, JS 和 HTM">
+    
+    <link rel="shortcut icon" href="/shianyuan.github.io/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/shianyuan.github.io/img/brand.jpg)">
+      <div class="brand">
+        <a href="/shianyuan.github.io/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/shianyuan.github.io/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">shianyuan</h5>
+          <a href="mailto:154490146@qq.com" title="154490146@qq.com" class="mail">154490146@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/shianyuan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/shianyuan.github.io/introduction"  >
+                <i class="icon icon-lg icon-link"></i>
+                Introduction
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">web前端优化加快网页加载速度方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">web前端优化加快网页加载速度方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-08T06:59:07.000Z" itemprop="datePublished" class="page-time">
+  2018-08-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#速度优化"><span class="post-toc-number">1.</span> <span class="post-toc-text">速度优化</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-web前端优化加快网页加载速度方法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">web前端优化加快网页加载速度方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-08 14:59:07" datetime="2018-08-08T06:59:07.000Z"  itemprop="datePublished">2018-08-08</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="速度优化"><a href="#速度优化" class="headerlink" title="速度优化"></a>速度优化</h4><ol>
+<li>清理 HTML 文档<br> css推荐的做法：把 CSS 放在 HTML 的上面部分，文档头之内，这可以确保正常的渲染过程<br> js推荐的做法：将 JavaScript 放置在 head 标签内或 HTML 文档的上部，这会阻塞 HTML 和 CSS 元素的加载过程。推荐放在html后面<br> 将CSS和JS放到外部文件中引用的话，CSS放头，JS放尾 。<br> 最后一定要压缩一下 CSS, JS 和 HTML。压缩代码可参考<a href="http://tool.chinaz.com/Tools/CssFormat.aspx" target="_blank" rel="noopener">站长之家工具</a></li>
+<li>请减少HTTP请求基本原理：<br>一个正常HTTP请求的流程简述：如在浏览器中输入”<a href="http://www.xxxxxx.com&quot;并按下回车，浏览器再与这个URL指向的服务器建立连接，然后浏览器才能向服务器发送请求信息，服务器在接受到请求的信息后再返回相应的信息，浏览器接收到来自服务器的应答信息后，对这些数据解释执行。" target="_blank" rel="noopener">www.xxxxxx.com&quot;并按下回车，浏览器再与这个URL指向的服务器建立连接，然后浏览器才能向服务器发送请求信息，服务器在接受到请求的信息后再返回相应的信息，浏览器接收到来自服务器的应答信息后，对这些数据解释执行。</a></li>
+</ol>
+<p>而当我们请求的网页文件中有很多图片、CSS、JS甚至音乐等信息时，将会频繁的与服务器建立连接，与释放连接，这必定会造成资源的浪费，且每个HTTP请求都会对服务器和浏览器产生性能负担。</p>
+<p>网速相同的条件下，下载一个100KB的图片比下载两个50KB的图片要快。所以，请减少HTTP请求。<br>解决办法：<br>合并图片（css sprites），合并CSS和JS文件；图片较多的页面也可以使用 lazyLoad 等技术进行优化。<br>图片也要进行无损压缩，压缩图片网站推荐<a href="https://tinypng.com/" target="_blank" rel="noopener">https://tinypng.com/</a></p>
+<ol start="3">
+<li>使用 CDN 和缓存提高速度<br>CDN 是一种缓存方法，可极大改善资源的分发时间，同时，它还能实现一些其他的缓存技术，如，利用浏览器缓存。<br>合理地设置浏览器缓存，能让浏览器自动存储某些文件，以便加快传输速度。此方法的配置可以直接在源服务器的配置文件中完成。</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-08-08T07:15:35.352Z" itemprop="dateUpdated">2018-08-08 15:15:35</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/" target="_blank" rel="external">shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="shianyuan.github.io">
+            <img src="/shianyuan.github.io/img/avatar.jpg" alt="shianyuan">
+            shianyuan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/&title=《web前端优化加快网页加载速度方法》 — SAY's BLOG&pic=shianyuan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/&title=《web前端优化加快网页加载速度方法》 — SAY's BLOG&source=个人的学习博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《web前端优化加快网页加载速度方法》 — SAY's BLOG&url=shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/&via=shianyuan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/shianyuan.github.io/2018/08/09/HTTP协议以及HTTP请求中8种请求方法/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">HTTP协议以及HTTP请求中8种请求方法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/shianyuan.github.io/2018/08/08/JQuery实现懒图片加载/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JQuery实现懒图片加载</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/shianyuan.github.io/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/shianyuan.github.io/img/wechat.jpg" data-alipay="/shianyuan.github.io/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>shianyuan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/&title=《web前端优化加快网页加载速度方法》 — SAY's BLOG&pic=shianyuan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/&title=《web前端优化加快网页加载速度方法》 — SAY's BLOG&source=个人的学习博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《web前端优化加快网页加载速度方法》 — SAY's BLOG&url=shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/&via=shianyuan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=shianyuan.github.io/2018/08/08/web前端优化加快网页加载速度方法/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/shianyuan.github.io/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你准备去哪！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
