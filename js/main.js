@@ -240,6 +240,7 @@
             $('#search').addEventListener(even, toggleSearch);
         },
         reward: function () {
+            console.log('点击')
             var modal = new this.modal('#reward');
             $('#rewardBtn').addEventListener(even, modal.toggle);
 
