@@ -173,8 +173,7 @@
         hideOnMask: [],
         modal: function (target) {
             this.$modal = $(target);
-            this.$off = this.$modal.querySelector('.close');
-
+            // this.$off = this.$modal.querySelector('.close');
             var _this = this;
 
             this.show = function () {
@@ -240,17 +239,18 @@
             $('#search').addEventListener(even, toggleSearch);
         },
         reward: function () {
-            console.log('点击')
-            var modal = new this.modal('#reward');
-            $('#rewardBtn').addEventListener(even, modal.toggle);
+            
+            // var modal = new this.modal('#reward');
+            // console.log('点击')
+            // $('#rewardBtn').addEventListener(even, modal.toggle);
 
-            var $rewardToggle = $('#rewardToggle');
-            var $rewardCode = $('#rewardCode');
-            if ($rewardToggle) {
-                $rewardToggle.addEventListener('change', function () {
-                    $rewardCode.src = this.checked ? this.dataset.alipay : this.dataset.wechat
-                })
-            }
+            // var $rewardToggle = $('#rewardToggle');
+            // var $rewardCode = $('#rewardCode');
+            // if ($rewardToggle) {
+            //     $rewardToggle.addEventListener('change', function () {
+            //         $rewardCode.src = this.checked ? this.dataset.alipay : this.dataset.wechat
+            //     })
+            // }
         },
         waterfall: function () {
 
@@ -492,6 +492,7 @@
     }, false);
 
     menuToggle.addEventListener(even, function (e) {
+        console.log('切换')
         Blog.toggleMenu(true);
         e.preventDefault();
     }, false);
