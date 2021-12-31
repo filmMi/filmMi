@@ -16,4 +16,4 @@ hexo new 标题
 hexo clean
 ```
 此版本node 为 v12.22.8
-
+nvm alias default [node版本号] //设置默认版本
