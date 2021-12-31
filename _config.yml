@@ -3,18 +3,18 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: SAY's BLOG
-subtitle: 成功非偶然!
+title: 电影mi
+subtitle: 电影爱好者加群号:710460461
 description: 个人的学习博客
-keywords: 前端 js react 跨域 css 打包 构建
-author: shianyuan
+keywords: 电影 pt 技术 前端 js react 跨域 css 打包 构建
+author: 电影mi
 language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: shianyuan.github.io
-root: /shianyuan.github.io
+url: shianyuan1.github.io
+root: /shianyuan1.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -79,5 +79,5 @@ theme: hexo-theme-indigo-card
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git 
-  repository: git@github.com:shianyuan/shianyuan.github.io.git
+  repository: git@github.com:shianyuan/shianyuan1.github.io.git
   branch: master

@@ -15,5 +15,5 @@ hexo new 标题
 清除缓存
 hexo clean
 ```
-
+此版本node 为 v12.22.8
 
