@@ -13,8 +13,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: shianyuan1.github.io
-root: /shianyuan1.github.io
+url: filmMi.github.io
+root: /filmMi.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -79,5 +79,5 @@ theme: hexo-theme-indigo-card
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git 
-  repository: git@github.com:shianyuan/shianyuan1.github.io.git
+  repository: git@github.com:shianyuan/filmMi.github.io.git
   branch: master
