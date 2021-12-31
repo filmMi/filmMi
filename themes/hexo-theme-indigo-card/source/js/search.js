@@ -10,7 +10,7 @@
         searchPanel = $('#search-panel'),
         searchResult = $('#search-result'),
         searchTpl = $('#search-tpl').innerHTML,
-        JSON_DATA = (G.BLOG.ROOT + '/content.json').replace(/\/{2}/g, '/'),
+        JSON_DATA = (G.BLOG.ROOT + '/db.json').replace(/\/{2}/g, '/'),
         searchData;
 
     function loadData(success) {
