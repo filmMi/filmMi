@@ -15,5 +15,6 @@ hexo new 标题
 清除缓存
 hexo clean
 ```
+一键浏览 : hexo clean&&hexo generate&&hexo server -s
 此版本node 为 v12.22.8
 nvm alias default [node版本号] //设置默认版本
